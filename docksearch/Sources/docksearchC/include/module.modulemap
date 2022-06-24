@@ -1,0 +1,4 @@
+module docksearchC {
+    umbrella "."
+    export *
+}
