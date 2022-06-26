@@ -13,6 +13,7 @@ final class DSManager: NSObject {
     static let sharedInstance = DSManager()
     var searchBar: DSSearchBar!
     var isRaised: Bool = false
+    var isFloatingDock: Bool = false
     
     var browserIdentifier: String {
         //Returns the bundle identifier for the device's default browser.

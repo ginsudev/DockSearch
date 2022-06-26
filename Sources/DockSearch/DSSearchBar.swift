@@ -19,8 +19,6 @@ class DSSearchBar: SBHSearchBar {
         self.searchTextField.placeholder = displayNameForCurrentBrowser()
         //Make everything left-aligned.
         self.searchTextField.setAlignmentBehavior(1, animated: false)
-        //Fix colouring issues on our custom browser icon/button
-        self.searchTextField.leftView!.mt_removeAllVisualStyling()
     }
     
     override func textFieldShouldReturn(_ arg1: Any!) -> Bool {
@@ -93,7 +91,7 @@ class DSSearchBar: SBHSearchBar {
     func animate(withContext context: Int) {
         //Context types
         //1 = Raise the search bar
-        //2 = Lower the search bar
+        //0 = Lower the search bar
         
         var transformation: CGAffineTransform {
             switch context {

@@ -65,6 +65,7 @@ struct SBIconImageInfo {
 
 @interface SBDockIconListView : UIView
 @property (nonatomic, assign, readwrite) UIEdgeInsets additionalLayoutInsets;
+@property (nonatomic, copy, readwrite) NSString *iconLocation;
 @end
 
 @interface SBRootFolderDockIconListView : SBDockIconListView

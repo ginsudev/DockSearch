@@ -22,6 +22,12 @@ class DSBrowserButton: UIButton {
         self.addTarget(self, action: #selector(openCurrentBrowser), for: .touchUpInside)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        //Fix colouring issues on our custom browser icon/button
+        self.mt_removeAllVisualStyling()
+    }
+    
     @objc func openCurrentBrowser() {
         //Opens the browser
         (UIApplication.shared as? SpringBoard)?.launchApplication(withIdentifier: DSManager.sharedInstance.browserIdentifier, suspended: false)

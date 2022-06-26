@@ -18,6 +18,13 @@ class SBRootFolderController_Hook: ClassHook<SBRootFolderController> {
     func viewDidLoad() {
         orig.viewDidLoad()
         
+        //Check if iPad dock is enabled. Don't progress any further if it is..
+        DSManager.sharedInstance.isFloatingDock = target.dockIconListView.iconLocation == "SBIconLocationFloatingDock"
+        
+        guard !DSManager.sharedInstance.isFloatingDock else {
+            return
+        }
+        
         //Init and add the search bar.
         DSManager.sharedInstance.searchBar = DSSearchBar(frame: CGRect(x: 15, y: 22, width: target.dockIconListView.frame.width - 30, height: 40))
         target.dockIconListView.addSubview(DSManager.sharedInstance.searchBar)
@@ -25,6 +32,10 @@ class SBRootFolderController_Hook: ClassHook<SBRootFolderController> {
     
     func viewWillAppear(_ animated: Bool) {
         orig.viewWillAppear(animated)
+        
+        guard !DSManager.sharedInstance.isFloatingDock else {
+            return
+        }
         
         let backgroundFrame: CGRect = Ivars<MTMaterialView>(DSManager.sharedInstance.searchBar.dockView())._backgroundView.frame
 
@@ -63,6 +74,10 @@ class SBIconListPageControl_Hook: ClassHook<SBIconListPageControl> {
     func didMoveToWindow() {
         orig.didMoveToWindow()
         
+        guard !DSManager.sharedInstance.isFloatingDock else {
+            return
+        }
+        
         guard target.delegate is SBRootFolderView else {
             return
         }
@@ -80,6 +95,10 @@ class SBIconScrollView_Hook: ClassHook<SBIconScrollView> {
     func _bs_willBeginScrolling() {
         orig._bs_willBeginScrolling()
         
+        guard !DSManager.sharedInstance.isFloatingDock else {
+            return
+        }
+        
         guard DSManager.sharedInstance.isRaised else {
             return
         }
@@ -94,6 +113,10 @@ class CSCoverSheetViewController_Hook: ClassHook<CSCoverSheetViewController> {
     //If the user locked the device while the dock was raised, dismiss it before the next unlock.
     func viewWillDisappear(_ animated: Bool) {
         orig.viewWillDisappear(animated)
+        
+        guard !DSManager.sharedInstance.isFloatingDock else {
+            return
+        }
         
         guard DSManager.sharedInstance.isRaised else {
             return
@@ -118,6 +141,10 @@ class SpringBoard_Hook: ClassHook<SpringBoard> {
     //Dismiss the dock when opening apps.
     func frontDisplayDidChange(_ display: AnyObject?) {
         orig.frontDisplayDidChange(display)
+        
+        guard !DSManager.sharedInstance.isFloatingDock else {
+            return
+        }
 
         guard let display = display as? SBApplication else {
             return

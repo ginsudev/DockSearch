@@ -61,7 +61,7 @@ class RootListController: PSListController {
                                 twitterHandle: "ginsudev",
                                 developerName: "Ginsu",
                                 tweakName: "DockSearch",
-                                tweakVersion: "v2.1",
+                                tweakVersion: "v2.1.2",
                                 email: "njl02@outlook.com",
                                 discordURL: "https://discord.gg/BhdUyCbgkZ",
                                 donateURL: "https://paypal.me/xiaonuoya")
