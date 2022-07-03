@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import <libgscommon/libgsutils.h>
 
 struct SBIconImageInfo {
     struct CGSize size;

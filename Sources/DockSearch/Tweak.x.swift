@@ -82,7 +82,11 @@ class SBIconListPageControl_Hook: ClassHook<SBIconListPageControl> {
             return
         }
         
-        target.transform = CGAffineTransform(translationX: 0, y: 10)
+        NSLog(GSUtilities.sharedInstance().isAndroBarInstalled() ? "[GSUtilities]: installed" : "[GSUtilities]: no installed")
+
+        let AndroBarHeight = GSUtilities.sharedInstance().isAndroBarInstalled() ? GSUtilities.sharedInstance().androBarHeight : 0.0
+        
+        target.transform = CGAffineTransform(translationX: 0.0, y: 10.0 - AndroBarHeight)
         target._setCustomVerticalPadding(5)
     }
 }
